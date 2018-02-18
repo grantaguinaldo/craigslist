@@ -1,13 +1,8 @@
+import requests as r
+from bs4 import BeautifulSoup as soup
+
+
 def scrape_function():
-    import requests as r
-    from bs4 import BeautifulSoup as soup
-    import pymongo
-
-    conn = 'mongodb://localhost:27017'
-    client = pymongo.MongoClient(conn)
-    db = client.craigslistdb
-
-    db.listing.drop()
 
     url = 'https://losangeles.craigslist.org/d/furniture/search/fua'
 
@@ -26,17 +21,4 @@ def scrape_function():
     listings['description'] = last_description
     listings['price'] = last_price
 
-    listingData = db.listing.find()
-    db.listing.insert_one(listings)
-
-    listingData = db.listing.find()
-    for each in listingData:
-        print(each)
-
-    print('Hi')
-
     return listings
-
-
-# if __name__ == '__main__':
-#     scrape_function()

@@ -4,10 +4,9 @@
     <title>Grant Aguinaldo Flask Page</title>
 </head>
 <body>
-    <h2>This is what I found!</h2>
-    {% for key, value in listing_.items() %}
+    <h2>Hey! This is what I found on Craigslist!</h2>
+    {% for key, value in page_data.items() %}
         {{key}} {{value}}
     {% endfor %}
-
 </body>
 </html>

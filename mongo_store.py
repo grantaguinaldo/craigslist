@@ -1,6 +1,8 @@
+import pymongo
+import scrape
+
+
 def mongo_store_():
-    import pymongo
-    import scrape
 
     listings = scrape.scrape_function()
 
@@ -11,13 +13,9 @@ def mongo_store_():
     db.listing.drop()
 
     db.listing.insert_one(listings)
-    listingData = db.listing.find()
+    listingData = list(db.listing.find())
 
-    for each in listingData:
-        print(each)
+    # Sending the object to a list is needed.
+    # https://stackoverflow.com/questions/28968660/how-to-convert-a-pymongo-cursor-cursor-into-a-dict
 
-    return listingData
-
-
-if __name__ == '__main__':
-    mongo_store_()
+    return listingData[0]
